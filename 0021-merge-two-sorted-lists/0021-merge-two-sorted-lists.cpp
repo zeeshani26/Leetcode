@@ -11,40 +11,41 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        // If any list is empty
+        if(!list2){
+            return list1;
+        }
         if(!list1){
             return list2;
         }
-        else if(!list2){
-            return list1;
-        }
-        //creating a dummy node for first time
+    //    Create a dummy node, to attach relevant nodes and create sorted 
+    //    list
         ListNode* dummy = new ListNode(0);
-        // Using Dummy node for first element
-        ListNode* tmp = dummy; 
-        
-        while(list1!=nullptr && list2!=nullptr){
-            if(list2->val < list1->val){
-                tmp->next = list2;
-                list2 = list2->next;
+
+        ListNode* tmp1 = list1;
+        ListNode* tmp2 = list2;
+        ListNode* tmp = dummy;
+        // Traverse through both list and add the smaller node to dummy
+       while(tmp1!=nullptr && tmp2!=nullptr){
+            if(tmp2->val < tmp1->val){
+                tmp->next = tmp2;
+                tmp2 = tmp2->next;
             }
             else{
-                tmp->next = list1;
-                list1 = list1->next;
+                tmp->next = tmp1;
+                tmp1 = tmp1->next;
             }
             tmp = tmp->next;
-        }
-        //terniary operator like js
+       }
 
-        tmp->next = (list1 != nullptr) ? list1 : list2;
-
-        ListNode* mergedList = dummy->next;
-        delete dummy;
-        return mergedList;
-        
-
-
-
-
-
+       // Account for leftover from either list
+       if(tmp1!=nullptr){
+        tmp->next = tmp1;
+       }
+       else{
+        tmp->next = tmp2;
+       }
+       dummy = dummy->next;
+       return dummy;
     }
 };
