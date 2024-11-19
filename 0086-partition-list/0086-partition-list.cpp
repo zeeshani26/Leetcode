@@ -11,30 +11,37 @@
 class Solution {
 public:
     ListNode* partition(ListNode* head, int x) {
-        // Create Dummy Node for list1 with values less thn x
-        ListNode* lessHead = new ListNode(0); // Dummy Node creation
-        // Create dummy node for list2 with values >= x
-        ListNode* greatHead = new ListNode(0);
-        //Create two pointers at dummy nodes for list traversal
-        ListNode* tmpless = lessHead;
-        ListNode* tmpgreat = greatHead;
-        // Traverse Original List and add values in the respective lists
-        ListNode* tmp = head;
-        while(tmp!=nullptr){
-            if(tmp->val < x){
-                tmpless->next = tmp;
-                tmpless = tmpless->next;
-            }
-            else{
-                tmpgreat->next = tmp;
-                tmpgreat = tmpgreat->next;
-            }
-            tmp = tmp->next;
+        if(!head){
+            return nullptr;
         }
+    // Make two dummy nodes
+    ListNode* lessHead = new ListNode(0);
+    ListNode* moreHead = new ListNode(0);
 
-// Since initial pointers are 0, well do greatHead->next when connecting  
-        tmpless->next = greatHead->next;
-        tmpgreat->next = nullptr;
-        return lessHead->next;       
+    // Traverse the original array and place the nodes based on val
+    ListNode* less = lessHead;
+    ListNode* more = moreHead;
+    ListNode* tmp = head;
+    while(tmp!=nullptr){
+        if(tmp->val < x){
+            less->next = tmp;
+            less = less->next;
+        }
+        else{
+            more->next = tmp;
+            more = more->next;
+        }
+        tmp = tmp->next;
+    }
+    more->next = nullptr;
+    less->next = moreHead->next;
+
+    ListNode* todelete1 = lessHead;
+    ListNode* todelete2 = moreHead;
+    moreHead = moreHead->next;
+    lessHead = lessHead->next;
+    delete todelete1;
+    delete todelete2;
+    return lessHead;
     }
 };
