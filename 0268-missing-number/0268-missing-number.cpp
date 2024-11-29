@@ -1,18 +1,13 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-    unordered_map<int, int> freqMap;
+    // Sum formula approach
     int n = nums.size();
-
-    for (int num : nums) {
-        freqMap[num]++; 
+    int actual_sum = (n * (n+1)) / 2;
+    int sum = 0;
+    for(int i=0; i<n; i++){
+        sum += nums[i];
     }
-
-    for(int i=0; i<n;i++){
-        if (freqMap.find(i) == freqMap.end()) {
-            return i; 
-        }
-    }
-    return n;
+    return (actual_sum - sum);
     }
 };
