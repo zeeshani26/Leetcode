@@ -1,34 +1,19 @@
 class Solution {
 public:
     string mergeAlternately(string word1, string word2) {
-        // Simple two pointer approach
-        if(word1.size() == 0){
-            return word2;
+        std::string result;
+        int n1 = word1.size(), n2 = word2.size();
+        int i = 0, j = 0;
+
+        while (i < n1 && j < n2) {
+            result += word1[i++];
+            result += word2[j++];
         }
-        if(word2.size() == 0){
-            return word1;
-        }
-    
-        int first = 0;
-        int second = 0;
-        std::string result = "";
-        
-        while(first < word1.size() && second < word2.size()){
-            result += word1[first++];
-            result += word2[second++];
-        }
-        if(first == word1.size()){
-            while(second < word2.size()){
-                result += word2[second];
-                second++;
-            }
-        }
-        else if(second == word2.size()){
-            while(first < word1.size()){
-                result += word1[first];
-                first++;
-            }
-        }
+
+        // Append any remaining characters
+        result += word1.substr(i);
+        result += word2.substr(j);
+
         return result;
     }
 };
