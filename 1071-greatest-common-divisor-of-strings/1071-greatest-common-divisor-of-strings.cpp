@@ -6,6 +6,12 @@ public:
         if(str1 + str2 != str2+str1){
             return "";
         }
-        return str1.substr(0,gcd(n1,n2));
+        while (n2 != 0) {
+            int temp = n2;
+            n2 = n1 % n2;
+            n1 = temp;
+        }
+        
+        return str1.substr(0,n1); // remember this
     }
 };
