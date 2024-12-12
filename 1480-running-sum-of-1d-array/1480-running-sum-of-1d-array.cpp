@@ -6,8 +6,6 @@ public:
         for(int i=0; i<nums.size(); i++){
             tmp +=  nums[i];
             nums[i] = tmp;
-            
-            cout<<tmp<<"\n";
         }
         return nums;
     }
