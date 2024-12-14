@@ -2,21 +2,21 @@ class Solution {
 public:
     int matchPlayersAndTrainers(vector<int>& players, vector<int>& trainers) {
        // one pointer within loop approach
-        sort(players.begin(), players.end()); 
-        reverse(players.begin(),players.end()); // reverse to optimize
+            sort(players.begin(),players.end());
+        reverse(players.begin(),players.end());
 
-        sort(trainers.begin(), trainers.end());
+        sort(trainers.begin(),trainers.end());
         reverse(trainers.begin(),trainers.end());
-        int p = 0;
-        int t = 0;
-        int ans = 0;
-        while (p < players.size()) {
-            if (t < trainers.size() && players[p] <= trainers[t]) {
-                t++;
+
+
+        int j=0;
+
+
+        for(int i=0;i<players.size();i++){
+            if(j<trainers.size() && players[i]<=trainers[j]){
+                j++;
             }
-            p++;
         }
-        
-        return t;
+        return j;
     }
 };
