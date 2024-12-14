@@ -8,15 +8,16 @@ public:
         int t = 0;
         int ans = 0;
         while (p < players.size() && t < trainers.size()) {
-            if (trainers[t] < players[p]) {
+            if (players[p] <= trainers[t]) {
+                //Match found, increment both pointers and add
+                ans++;
+                p++;
                 t++;
             } else {
-                ans++;
                 t++;
-                p++;
             }
-        } 
+        }
+        
         return ans;
- 
     }
 };
