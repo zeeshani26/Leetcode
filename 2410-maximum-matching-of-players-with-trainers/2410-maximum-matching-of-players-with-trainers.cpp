@@ -7,7 +7,9 @@ public:
         int p = 0;
         int t = 0;
         int ans = 0;
-        while (p < players.size() && t < trainers.size()) {
+        int nump = players.size();
+        int numt = trainers.size();
+        while (p < nump && t < numt) {
             if (trainers[t] < players[p]) {
                 t++;
             } else {
