@@ -8,12 +8,14 @@ public:
 
         int nump = players.size();
         int numt = trainers.size();
-
-       while (p < nump && t < numt) {
-            ans += (players[p] <= trainers[t]);
-            p += (players[p] <= trainers[t]);
-            t++; // Trainer always increments logically
-        }
+        
+        while (p < nump && t < numt) {
+            if (players[p] <= trainers[t]) {
+                p++;
+                ans++;
+            }
+            t++;
+        } 
         return ans;
  
     }
