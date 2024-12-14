@@ -1,23 +1,22 @@
 class Solution {
 public:
     int matchPlayersAndTrainers(vector<int>& players, vector<int>& trainers) {
-       // two pointer final
+       // one pointer within loop approach
         sort(players.begin(), players.end()); 
+        reverse(players.begin(),players.end()); // reverse to optimize
+
         sort(trainers.begin(), trainers.end());
+        reverse(trainers.begin(),trainers.end());
         int p = 0;
         int t = 0;
         int ans = 0;
-        while (p < players.size() && t < trainers.size()) {
-            if (players[p] <= trainers[t]) {
-                //Match found, increment both pointers and add
-                ans++;
-                p++;
-                t++;
-            } else {
+        while (p < players.size()) {
+            if (t < trainers.size() && players[p] <= trainers[t]) {
                 t++;
             }
+            p++;
         }
         
-        return ans;
+        return t;
     }
 };
