@@ -10,12 +10,12 @@ public:
         int nump = players.size();
         int numt = trainers.size();
         while (p < nump && t < numt) {
-            if (trainers[t] < players[p]) {
-                t++;
-            } else {
-                ans++;
+            if (players[p] <= trainers[t]) {
                 t++;
                 p++;
+                ans++;
+            } else {
+                t++;
             }
         } 
         return ans;
