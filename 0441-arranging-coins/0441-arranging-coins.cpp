@@ -1,14 +1,11 @@
 class Solution {
 public:
     int arrangeCoins(int n) {
+        // Brute Force optimized
         int ans = 0;
-        int tmp = n;
-        for(int i=1;i<=n;i++){
-            tmp = tmp-i;
+        while (n >= ans + 1) {
             ans++;
-            if(tmp<=i){
-                break;
-            }
+            n = n - ans;
         }
         return ans;
     }
