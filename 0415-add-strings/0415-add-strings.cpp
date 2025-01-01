@@ -8,6 +8,7 @@ public:
         int i = num1.size()-1;
         int j = num2.size()-1;
         int carry = 0;
+        int sum;
        while(i>=0 || j>=0 || carry){
             //declared an int var sum and assigned 0 to it
             long sum = 0;
@@ -33,6 +34,36 @@ public:
             /* concatenate the last digit of the sum after converting 
              it into string using to_string function */ 
             ans+=to_string(sum%10);
+        }
+
+        while(i>=0){
+            sum = (num1[i] - '0') + carry;
+            if(sum>9){
+                carry = sum/10;
+                sum = sum % 10;
+            }
+            else{
+                carry = 0;
+            }
+            ans += sum + '0';
+            i--;
+        }
+        while(j>=0){
+            sum = (num2[j] - '0') + carry;
+            if(sum>9){
+                carry = sum/10;
+                sum = sum % 10;
+            }
+            else{
+                carry = 0;
+            }
+            ans += sum + '0';
+            j--;
+        }
+
+        // If theres still a carry, i.e. number increased by one place
+        if(carry>0){
+            ans += carry + '0';
         }
 
         // Bceause we were going fromn left o right while calculating and adding
