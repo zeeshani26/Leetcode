@@ -16,6 +16,7 @@ public:
                     ne++;
                 }
                 if(ne != m){
+                    ha = ans+1;
                     ans = -1;
                 }
                 else if(ne==m){
