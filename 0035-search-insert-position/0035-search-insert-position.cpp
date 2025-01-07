@@ -1,15 +1,26 @@
 class Solution {
 public:
-    int searchInsert(vector<int>& nums, int target) {
-        int n = nums.size();
-        for(int i=0;i<n;i++){
-            if(nums[i]==target){
-                return i;
+    int binarySearch(vector<int>& nums, int target, int l, int h){
+        int ans = -1;
+        while(l<=h){
+            int m = (l+h)/2;
+            ans = m;
+            if(nums[m]==target){
+                return m;
             }
-            if(nums[i]>target){
-                return i;
+            else if(target<nums[m]){
+                h = m-1;
+            }
+            else{
+                l = m+1;
             }
         }
-        return n;
+        return l;
+        
+    }
+    int searchInsert(vector<int>& nums, int target) {
+        int n = nums.size();
+        int ans = binarySearch(nums,target,0,n-1);
+        return ans;
     }
 };
