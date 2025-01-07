@@ -4,7 +4,6 @@ public:
         int ans = -1;
         while(l<=h){
             int m = (l+h)/2;
-            ans = m;
             if(nums[m]==target){
                 return m;
             }
