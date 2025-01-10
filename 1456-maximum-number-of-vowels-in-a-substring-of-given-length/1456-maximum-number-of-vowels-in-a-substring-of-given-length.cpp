@@ -11,20 +11,29 @@ public:
     int maxVowels(string s, int k) {
         int n = s.size(); // 9
         int l = 0;
-        int r = k-1; // 2
-        int max = 0;
-        while(r<n){  // 2 < 9
-            int ans = 0;
-            for(int i=l; i<=r;i++){
-                if(checkVowel(s[i]) == true){
-                    ans++;
-                }
+        int r = 0; // 2
+        int ans = 0;
+        while(r<k){
+            if(checkVowel(s[r]) == true ){
+                ans++;
             }
-            if(ans>max){
-                max = ans;
+            r++;
+        }
+        int max = ans;
+
+
+        while(r<n){  // 2 < 9
+            if(checkVowel(s[l]) == true){
+                ans--;
+            }
+            if(checkVowel(s[r]) == true){
+                ans++;
             }
             r++;
             l++;
+            if(ans>max){
+                max = ans;
+            } 
         }
         return max;
         
