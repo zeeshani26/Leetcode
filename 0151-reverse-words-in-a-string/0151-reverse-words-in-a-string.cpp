@@ -7,7 +7,7 @@ public:
 
         while (i >= 0) {
             if (s[i] == ' ') {
-                if(word != "")
+                if(!word.empty())
                     ans += word + " ";
                     word = ""; // Reset word to collect the next one
             }   
@@ -19,7 +19,7 @@ public:
         }
 
         // Add the last word to the answer (if it exists)
-        if (word != "") {
+        if (!word.empty()) {
             ans += word;
         }
 
