@@ -7,7 +7,7 @@ public:
 
         while (i >= 0) {
             if (s[i] == ' ') {
-                if (word.empty() == false) { // to ensure no zsubsequent space
+                if (word.empty() == false) {// to ensure no zsubsequent space
                     // If we have collected a word, append it to the answer
                     ans += word + " ";
                     word = ""; 
