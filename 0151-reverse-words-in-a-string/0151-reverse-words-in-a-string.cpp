@@ -7,7 +7,7 @@ public:
 
         while (i >= 0) {
             if (s[i] == ' ') {
-                if (word.empty() == false) {
+                if (!word.empty()) {
                     // If we have collected a word, append it to the answer
                     ans += word + " ";
                     word = ""; // Reset word to collect the next one
@@ -20,12 +20,12 @@ public:
         }
 
         // Add the last word to the answer (if it exists)
-        if (word.empty() == false) {
+        if (!word.empty()) {
             ans += word;
         }
 
         // Remove trailing space (if any)
-        if (ans.back() == ' ') {
+        if (!ans.empty() && ans.back() == ' ') {
             ans.pop_back();
         }
 
