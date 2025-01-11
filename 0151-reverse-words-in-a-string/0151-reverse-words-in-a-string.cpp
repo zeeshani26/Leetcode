@@ -7,11 +7,12 @@ public:
 
         while (i >= 0) {
             if (s[i] == ' ') {
-                if(!word.empty())
+                if (word.empty() == false) {
+                    // If we have collected a word, append it to the answer
                     ans += word + " ";
                     word = ""; // Reset word to collect the next one
-            }   
-            else {
+                }
+            } else {
                 // Add characters to the word
                 word = s[i] + word;
             }
@@ -19,7 +20,7 @@ public:
         }
 
         // Add the last word to the answer (if it exists)
-        if (!word.empty()) {
+        if (word.empty() == false) {
             ans += word;
         }
 
