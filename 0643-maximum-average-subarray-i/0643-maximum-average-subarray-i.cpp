@@ -21,7 +21,6 @@ public:
                 max = sum;
             }
         }
-        double ans = max/k; 
-        return ans;
+        return static_cast<double>(max)/k;
     }
 };
