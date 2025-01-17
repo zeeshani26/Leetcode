@@ -13,7 +13,7 @@ public:
                 j++;
             }
         }
-        string ans = s.substr(0,j);
-        return ans;
+        return s.substr(0,j);
+        
     }
 };
