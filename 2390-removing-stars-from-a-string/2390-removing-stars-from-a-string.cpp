@@ -1,7 +1,6 @@
 class Solution {
 public:
     string removeStars(string s) {
-        int i = 0;
         int j = 0;
         int n = s.size();
         for(int i=0; i<n; i++){
