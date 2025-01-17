@@ -2,8 +2,7 @@ class Solution {
 public:
     string removeStars(string s) {
         int j = 0;
-        int n = s.size();
-        for(int i=0; i<n; i++){
+        for(int i=0; i<s.size(); i++){
             if(s[i] == '*'){
                 j--;
             }
