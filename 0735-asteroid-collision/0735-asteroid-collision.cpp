@@ -1,35 +1,42 @@
 class Solution {
 public:
     vector<int> asteroidCollision(vector<int>& asteroids) {
-        stack <int> stack;
-        int n = asteroids.size();
-        for(int i=0; i<n; i++){
-            if(stack.empty() || (asteroids[i] >= 0 && stack.top() >= 0) || (asteroids[i] < 0 && stack.top() < 0)){
-                stack.push(asteroids[i]);
-            }
-            else if(asteroids[i] < 0 && stack.top() >= 0){
-                if(abs(asteroids[i]) >= abs(stack.top())){
-                    while(!stack.empty() && abs(asteroids[i]) >= abs(stack.top())){
-                        stack.pop();
-                    }
+        stack<int> stack; // Use a stack to handle the asteroid collisions
+
+        for (int asteroid : asteroids) {
+            bool isDestroyed = false; // Flag to check if the current asteroid is destroyed
+            
+            // Check for collisions when the current asteroid is moving left (negative)
+            // and the top of the stack is moving right (positive)
+            while (!stack.empty() && asteroid < 0 && stack.top() > 0) {
+                if (abs(asteroid) > abs(stack.top())) {
+                    // Current asteroid is larger, destroy the top asteroid
+                    stack.pop();
+                } else if (abs(asteroid) == abs(stack.top())) {
+                    // Both asteroids are the same size, destroy both
+                    stack.pop();
+                    isDestroyed = true; // Mark the current asteroid as destroyed
+                    break;
+                } else {
+                    // Current asteroid is smaller, it gets destroyed
+                    isDestroyed = true;
+                    break;
                 }
             }
-            else if(asteroids[i] >= 0 && stack.top() < 0){
-                if(abs(asteroids[i]) >= abs(stack.top())){
-                    while(!stack.empty() && abs(asteroids[i]) >= abs(stack.top())){
-                        stack.pop();
-                    }
-                }
+
+            // If the asteroid wasn't destroyed, add it to the stack
+            if (!isDestroyed) {
+                stack.push(asteroid);
             }
         }
-        vector<int> ans;
-        int i = 0;
-        while(!stack.empty()){
-            ans.push_back(stack.top());
+
+        // Convert the stack to a vector for the final result
+        vector<int> result(stack.size());
+        for (int i = stack.size() - 1; i >= 0; --i) {
+            result[i] = stack.top();
             stack.pop();
-            i++;
         }
-        reverse(ans.begin(),ans.end());
-        return ans;
+
+        return result;
     }
 };
