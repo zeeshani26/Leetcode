@@ -8,7 +8,7 @@ public:
             
             // Check for collisions when the current asteroid is moving left (negative)
             // and the top of the stack is moving right (positive)
-            while (!stack.empty() && asteroid < 0 && stack.top() > 0) {
+            while (!stack.empty() && asteroid < 0 && stack.top() >= 0) {
                 if (abs(asteroid) > abs(stack.top())) {
                     // Current asteroid is larger, destroy the top asteroid
                     stack.pop();
