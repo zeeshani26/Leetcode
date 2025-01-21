@@ -11,13 +11,13 @@
 class Solution {
 public:
     int greatestCommonDivisor(int a, int b){
-        int c = min(a,b);
-        for(int i = c; i>0;i--){
-            if(a%i==0 && b%i==0){
-                return i;
-            }
+        // Euclidean Algorithm
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
         }
-        return -1;
+        return a;
     }
     ListNode* insertGreatestCommonDivisors(ListNode* head) {
         ListNode* slow = head;
