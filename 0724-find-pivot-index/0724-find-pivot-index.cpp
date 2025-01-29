@@ -1,7 +1,8 @@
 class Solution {
 public:
     int pivotIndex(vector<int>& nums) {
-        int n = nums.size();
+    // take total sum starting from 2nd element
+       int n = nums.size();
        int leftsum = 0;
        int rightsum = 0;
        for(int i=1; i<n; i++){
@@ -10,6 +11,7 @@ public:
        if(rightsum == 0){
         return 0;
        }
+    // keep adding 1 element in leftsum starting from i-1 and compare RHS==LHS
        for(int i=1; i<n; i++){
         leftsum += nums[i-1];
         rightsum -= nums[i];
