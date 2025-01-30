@@ -4,7 +4,8 @@ public:
         unordered_map<int,int> freqMap;
         for(int s:nums){
             if(!freqMap[s]){
-                freqMap[s]++;}
+                freqMap[s]++;
+            }
             else{
                 return true;
             }
