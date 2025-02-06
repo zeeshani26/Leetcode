@@ -3,31 +3,28 @@ public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
         /*
         1. Create a hashmap
-        2. Create 26 character string based on the alphabets in a word
-        3. If two string are same put them in the same hashmap group
-
+        2. In a loop sort the individual element and addd iy to hashmap where key is sorted element and value is all the anagarams as arrays.
+        3. convert map values to an array and return final array
         */
         unordered_map<string, vector<string>> group;
         
-        for (const string& s : strs) {
-            int count[26] = {0}; // Initialize a fixed-size array
-            for (char c : s) {
-                count[c - 'a']++; // Count characters
+        for (string s : strs) {
+            string key = s;
+            sort(key.begin(),key.end());
+        // If key is not in the map, add a new entry with the word as a vector
+            if(group.find(key)==group.end()){
+                group[key] = {s};
             }
-            
-            // Convert the count array to a string key
-            string key;
-            for (int i = 0; i < 26; i++) {
-                key += to_string(count[i]) + "#"; // Use a delimiter to separate counts
+        // If key is already present, append the word to the existing vector
+            else{
+                group[key].push_back(s);
             }
-            
-            group[key].push_back(s); // Use the key to group anagrams
         }
-        
         vector<vector<string>> result;
-        for (const auto& pair : group) {
-            result.push_back(pair.second);
+        for(const auto& group : group){
+            result.push_back(group.second);  // second is value, first is key
         }
         return result;
+       
     }
 };
