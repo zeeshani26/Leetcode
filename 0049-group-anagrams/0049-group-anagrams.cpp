@@ -8,13 +8,13 @@ public:
         */
         unordered_map<string, vector<string>> group;
         
-        for (string s : strs) {
+        for (auto s : strs) {
             string key = s;
             sort(key.begin(),key.end());
             group[key].push_back(s);
         }
         vector<vector<string>> result;
-        for(const auto& pair : group){
+        for(auto pair : group){
             result.push_back(pair.second);  // second is value, first is key
         }
         return result;
