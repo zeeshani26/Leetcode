@@ -11,18 +11,11 @@ public:
         for (string s : strs) {
             string key = s;
             sort(key.begin(),key.end());
-        // If key is not in the map, add a new entry with the word as a vector
-            if(group.find(key)==group.end()){
-                group[key] = {s};
-            }
-        // If key is already present, append the word to the existing vector
-            else{
-                group[key].push_back(s);
-            }
+            group[key].push_back(s);
         }
         vector<vector<string>> result;
-        for(const auto& group : group){
-            result.push_back(group.second);  // second is value, first is key
+        for(const auto& pair : group){
+            result.push_back(pair.second);  // second is value, first is key
         }
         return result;
        
