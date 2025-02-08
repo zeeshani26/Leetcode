@@ -2,31 +2,30 @@ class Solution {
 public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
         /* 1. Create a hashmap : element(key) : frequency(value)
-           2. Take the second value from pair */
+           2. Create buckets where index is frequency and inside buckets are arrays of values eg: [[],[3],[],[1,2]*/
 
         unordered_map<int,int> freq;
+        
         for(const int el : nums){
-            if(freq[el]){
-                freq[el]++;
-            }
-            else{
-                freq[el] = 1;
-            }
+            freq[el]++;
         } 
+        //create bucket
+        vector<vector<int>> bucket(nums.size() + 1);
+        // add value to bucket
+        for(const auto& pair : freq){
+            bucket[pair.second].push_back(pair.first);
+        }
         vector <int> ans;
-        while(k>0){
-            int ans_key = -1; 
-            int max = 0;
-
-            for(const auto& pair : freq){
-                if(pair.second>max){
-                    max = pair.second;
-                    ans_key = pair.first;
+        // push answer to final array
+        for(int i=bucket.size()-1; i>=0 && k>0;i--){
+            // loop inside to get all value from the same bucket
+            if(k!=0){
+                for (const int el : bucket[i]) {
+                    ans.push_back(el);
+                    k--;
+                    if (k == 0) break;
                 }
             }
-            freq[ans_key] = -1;
-            ans.push_back(ans_key);
-            k--;
         }
         return ans;
         
