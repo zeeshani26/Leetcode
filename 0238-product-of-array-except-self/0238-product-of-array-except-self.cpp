@@ -1,39 +1,36 @@
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
+        // pre and post array method 1st attempt
         int n = nums.size();
-        vector<int> ans(n, 1);
-        // Illegal division method
-        // Step 1: Calculate the product of all non-zero elements
-        int prod = 1;
-        int zeroCount = 0; // Count the number of zeros
+        vector <int> pre(nums.size());
+        vector <int> post(nums.size());
 
-        for (int i = 0; i < n; i++) {
-            if (nums[i] == 0) {
-                zeroCount++;
-            } else {
-                prod *= nums[i];
-            }
+        // filling pre array [1,2,3,4]
+        // [1,1,2,6]
+        // 1
+        int preVal = 1;
+        pre[0] = 1;
+        for(int i=1;i<n;i++){
+            pre[i] = preVal * nums[i-1];
+            preVal = pre[i];
         }
-
-        // Step 2: Fill the result array
-        for (int i = 0; i < n; i++) {
-            if (zeroCount == 0) {
-                // No zeros: divide the total product by nums[i]
-                ans[i] = prod / nums[i];
-            } else if (zeroCount == 1) {
-                // One zero: result is 0 except for the zero element
-                if (nums[i] == 0) {
-                    ans[i] = prod; // Product of non-zero elements
-                } else {
-                    ans[i] = 0;
-                }
-            } else {
-                // More than one zero: result is always 0
-                ans[i] = 0;
-            }
+        // For post
+        int postVal = 1;
+        post[n-1] = 1;
+        for(int i=n-2;i>=0;i--){
+            post[i] = postVal * nums[i+1];
+            postVal = post[i];
         }
-
+        // for(int i =0 ; i<n;i++){
+        //     cout<<post[i]<<" | ";
+        // }
+        vector<int> ans(n);
+        for(int i=0; i<n;i++){
+            ans[i] = post[i] * pre[i];
+        }
+        
         return ans;
+
     }
 };
