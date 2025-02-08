@@ -3,9 +3,7 @@ public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
         /* 1. Create a hashmap : element(key) : frequency(value)
            2. Create buckets where index is frequency and inside buckets are    arrays of values eg: [[],[3],[],[1,2]*/
-            if(k==nums.size()){
-                return nums;
-            }
+           
             unordered_map<int,int> freq;
 
             for(const int el:nums){
