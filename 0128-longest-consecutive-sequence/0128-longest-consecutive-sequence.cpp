@@ -2,26 +2,41 @@ class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
         if (nums.empty()) return 0;
+        unordered_map<int, bool> numMap;
+        int n = nums.size();
 
-        unordered_set<int> numSet(nums.begin(), nums.end());
-        int longest = 0;
-
-        for (int num : numSet) {
-            // Check if num is the start of a sequence
-            if (numSet.find(num - 1) == numSet.end()) {
-                int currentNum = num;
-                int currentStreak = 1;
-
-                // Count consecutive numbers
-                while (numSet.find(currentNum + 1) != numSet.end()) {
-                    currentNum++;
-                    currentStreak++;
-                }
-
-                longest = max(longest, currentStreak);
-            }
+        // Create hashmap with key as numbers and valeu as false
+        for(int val:nums){
+            numMap[val] = false;
         }
 
-        return longest;
+        int longest = 1;
+
+        // traversing through array
+        for(int i=0; i<n;i++){
+            int currentLength = 1;
+
+            // looking for sequence ahead
+            int next = nums[i] + 1;
+            while(numMap.find(next) != numMap.end() && numMap[next] != true){
+                currentLength++;
+                numMap[next] = true;
+                next++;
+            }
+
+            int prev = nums[i] - 1;
+            while(numMap.find(prev) != numMap.end() && numMap[prev] != true){
+                currentLength++;
+                numMap[prev] = true;
+                prev--;
+            }
+
+            if(currentLength > longest){
+                longest = currentLength;
+            }
+
+        }
+      
+      return longest;
     }
 };
