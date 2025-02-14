@@ -7,7 +7,7 @@ public:
 
         unordered_set<int> numSet(nums.begin(),nums.end());
         int longest  = 1;
-        for(auto& s: numSet){
+        for(int s: numSet){
 
             if(!numSet.count(s-1)){
                 int currentLength = 1;
