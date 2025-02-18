@@ -2,28 +2,28 @@ class Solution {
 public:
     int countConsistentStrings(string allowed, vector<string>& words) {
         unordered_map<char, int> freq;
-
-        for (char c : allowed) {
-            freq[c] = 1;
+        // Create a hashmap
+        for(char i :allowed){
+            freq[i]++;
         }
-
         int count = 0;
+        // Loop through the string in words array
+        for(string i: words){
 
-        for (const string& word : words) {
             bool isConsistent = true;
-
-            for (char c : word) {
-                if (freq.find(c) == freq.end()) {
+            for(char j: i){
+                if(freq.find(j)==freq.end()){
                     isConsistent = false;
                     break;
                 }
             }
-
-            if (isConsistent) {
+            if(isConsistent == true){
                 count++;
             }
-        }
 
+        }
         return count;
+
+
     }
 };
