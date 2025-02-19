@@ -7,13 +7,13 @@ public:
 
         while (i >= 0) {
             if (s[i] == ' ') {
-                if (!word.empty()) {
+                if (!word.empty()) {  // to check if word is empty
                     // If we have collected a word, append it to the answer
                     ans += word + " ";
                     word = ""; // Reset word to collect the next one
                 }
             } else {
-                // Add characters to the word
+                // Add characters to initial of the word
                 word = s[i] + word;
             }
             i--;
