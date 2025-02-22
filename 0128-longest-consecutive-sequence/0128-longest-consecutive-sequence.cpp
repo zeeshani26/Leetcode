@@ -7,7 +7,7 @@ public:
         2. In loop, check if the elements prev (e-1) doesnt exist in the set
         3. Set currentLength as 1 and look for next (e+1) in the set use count
         */
-        unordered_set<int> set(nums.begin(),nums.end());
+        std::unordered_set<int> set(nums.begin(),nums.end());
 
         int longest = 1;
         int currentLength;
@@ -20,7 +20,7 @@ public:
                     currentLength++;
                     nextElement++;
                 }
-            longest = max(currentLength,longest);
+            longest = std::max(currentLength,longest);
 
             }
 
