@@ -6,11 +6,11 @@ public:
         int n = nums.size();
         
         vector<vector<int>> ans; 
-        for(int i=0; i<n; i++){
+        for(int i=0; i<n-2; i++){
             if(nums[i] > 0){
                 break;
             }
-            if(i==0 || nums[i] != nums[i-1]){
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
                 int l = i+1;
                 int r = n-1;
                 int target = -nums[i];
@@ -34,7 +34,7 @@ public:
                         l++;
                     }
                 } 
-            }
+            
         }
         return ans;
     }
