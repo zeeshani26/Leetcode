@@ -4,20 +4,18 @@ public:
         
         int r = height.size()-1;
         int l = 0;
-        int max = 0;
+        int maxArea = 0;
         while(l<r){
             int h = min(height[l],height[r]);
             int area = h * (r-l);
-            if(area>max){
-                max = area; 
-            }
-            if(h==height[l]){
+            maxArea = max(maxArea, h * (r - l));
+            if(height[l]<height[r]){
                 l++;
             }
-            else if(h==height[r]){
+            else{
                 r--;
             }     
         }
-        return max;
+        return maxArea;
     }
 };
