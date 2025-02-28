@@ -10,7 +10,7 @@ public:
             if(nums[i] > 0){
                 break;
             }
-            if (i > 0 && nums[i] == nums[i - 1]) continue;
+            if(i==0 || nums[i] != nums[i-1]){
                 int l = i+1;
                 int r = n-1;
                 int target = -nums[i];
@@ -34,7 +34,7 @@ public:
                         l++;
                     }
                 } 
-            
+            }
         }
         return ans;
     }
