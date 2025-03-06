@@ -18,6 +18,7 @@ public:
         for (int i = 1; i <= m; i++) {
             if (mySet.count(i) == 0) {
                 ans[1] = i;
+                break;
             }
         }
         return ans;
