@@ -6,23 +6,22 @@ public:
             return 1;
         }
         int left = 0;
-        int right = 0;
-        int length = 0;
+        int right = 1;
+        int length = 1;
         int ans = 0;
         unordered_set<int> val;
-
+        val.insert(s[left]);
         while (right < s.size()) {
-            val.insert(s[left]);
-            length = 1;
-            right = left + 1;
-            while (right < s.size() && val.find(s[right]) == val.end()) {
+            if (val.find(s[right]) != val.end()) {
+                val.erase(s[left]);
+                left++;
+                length--;
+            } else {
                 val.insert(s[right]);
                 length++;
                 right++;
+                ans = max(length, ans);
             }
-            val.clear();
-            ans = max(length, ans);
-            left++;
         }
         return ans;
     }
