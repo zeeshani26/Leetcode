@@ -1,7 +1,7 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        // sliding window withs et approach
+        // sliding window with set approach
         if (s.size() == 1) {
             return 1;
         }
