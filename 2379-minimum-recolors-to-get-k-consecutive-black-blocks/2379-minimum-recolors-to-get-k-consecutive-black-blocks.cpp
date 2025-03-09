@@ -15,6 +15,7 @@ public:
         }
         int left = 1;
         int right = k;
+        // remember to update this value based on first iteration
         int mx = count;
         while (right < blocks.size()) {
             if (blocks[right] == 'B') {
