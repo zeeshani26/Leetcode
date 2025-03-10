@@ -1,15 +1,24 @@
 class Solution {
 public:
     int numberOfAlternatingGroups(vector<int>& colors) {
-        int count = 0, n = colors.size();
-        for (int i = 0; i < n; i++) {
-            int prev = colors[(i - 1 + n) % n];  // Circular previous element
-            int curr = colors[i];
-            int next = colors[(i + 1) % n];      // Circular next element
-            
-            if (curr != prev && curr != next) {
+
+        // int left = 0;
+        // int mid = 1;
+        int right = 2;
+        int count = 0;
+        int n = colors.size();
+        if (colors[0] != colors[n - 1] && colors[n - 1] != colors[n - 2]) {
+            count++;
+        }
+        if (colors[1] != colors[0] && colors[0] != colors[n - 1]) {
+            count++;
+        }
+        while (right < n) {
+            if (colors[right] != colors[right - 1] &&
+                colors[right - 1] != colors[right - 2]) {
                 count++;
             }
+            right++;
         }
         return count;
     }
