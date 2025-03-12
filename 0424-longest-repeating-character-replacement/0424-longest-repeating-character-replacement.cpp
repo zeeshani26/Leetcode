@@ -13,12 +13,7 @@ public:
         while (right < s.size()) {
             freqMap[s[right]]++;
             windowSize++;
-            for (const auto& pair : freqMap) {
-                cout << "freqMap value: " << pair.first << " : " << pair.second
-                     << endl;
-
-                maxFreq = max(maxFreq, pair.second);
-            }
+            maxFreq = max(maxFreq, freqMap[s[right]]); // whats increasing
             charToChange = windowSize - maxFreq;
             cout << "No. of char to change: " << charToChange << endl;
             cout << "MaxFreq: " << maxFreq << endl;
