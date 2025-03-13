@@ -39,6 +39,9 @@ public:
                 }
                 windowMap[s[l]]--;
                 if (freqMap.count(s[l]) && windowMap[s[l]] < freqMap[s[l]]) {
+                    // to check if we have enpugh of the character in windowmap
+                    // as required in the freqmap we do windowMap[s[l]] <
+                    // freqMap[s[l]]
                     charFound--;
                 }
                 l++;
