@@ -49,7 +49,6 @@ public:
             r++;
         }
 
-        cout << startIndex << " , " << min;
         if (min == INT_MAX) {
             return "";
         }
