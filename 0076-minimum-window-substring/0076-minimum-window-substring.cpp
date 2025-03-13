@@ -52,12 +52,6 @@ public:
         if (min == INT_MAX) {
             return "";
         }
-        string ans = "";
-        int i = startIndex;
-        while (i < startIndex + min) {
-            ans += s[i];
-            i++;
-        }
-        return ans;
+        return s.substr(startIndex, min);
     }
 };
