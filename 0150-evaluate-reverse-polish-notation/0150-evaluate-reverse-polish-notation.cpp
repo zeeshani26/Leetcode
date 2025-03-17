@@ -7,8 +7,8 @@ public:
         int curAns = 0;
         int ans = 0;
         for (int i = 0; i < tokens.size(); i++) {
-            if (bucket.empty() || (tokens[i] != "+" && tokens[i] != "-" &&
-                                   tokens[i] != "*" && tokens[i] != "/")) {
+            if (tokens[i] != "+" && tokens[i] != "-" &&
+                                   tokens[i] != "*" && tokens[i] != "/") {
                 cout << tokens[i] << endl;
                 bucket.push(stoi(tokens[i]));
             } else {
