@@ -10,13 +10,14 @@ public:
 
         if (remainingOpen > 0) {
             // create new string when adding
-            string current = s + '(';
-            recursionLoop(current, ans, remainingOpen - 1, remainingClose);
+            s.push_back('(');
+            recursionLoop(s, ans, remainingOpen - 1, remainingClose);
+            s.pop_back();
         }
         if (remainingOpen < remainingClose) {
-            string current = s + ')';
-
-            recursionLoop(current, ans, remainingOpen, remainingClose - 1);
+            s.push_back(')');
+            recursionLoop(s, ans, remainingOpen, remainingClose - 1);
+            s.pop_back();
         }
     }
     vector<string> generateParenthesis(int n) {
