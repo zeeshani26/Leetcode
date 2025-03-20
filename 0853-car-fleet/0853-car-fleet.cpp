@@ -1,27 +1,25 @@
 class Solution {
 public:
     int carFleet(int target, vector<int>& position, vector<int>& speed) {
-        vector<pair<int, int>> car;
-
-        for (int i = 0; i < position.size(); i++) {
+        vector<pair<double, double>> car;
+        int n = position.size();
+        for (int i = 0; i < n; i++) {
             car.push_back({position[i], speed[i]});
         }
 
-        //Sort by position (ascending order)
         sort(car.begin(), car.end());
 
         stack<double> stk;
-
-        for (int i = car.size() - 1; i >= 0; i--) {
-            double time = (target - car[i].first) / (double)car[i].second;
-
-            // If the stack is empty or the current car's time is greater than the top of the stack,
-            // it forms a new fleet.
-            if (stk.empty() || stk.top() < time) {
-                stk.push(time);
+        int count = 0;
+        double prev = 0;
+        for (int i = n - 1; i >= 0; i--) {
+            double t = (target - car[i].first) / car[i].second;
+            // without stack
+            if (t > prev) {
+                count++;
+                prev = t;
             }
         }
-
-        return stk.size();
+        return count;
     }
 };
