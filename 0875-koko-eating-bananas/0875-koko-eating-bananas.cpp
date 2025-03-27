@@ -1,19 +1,23 @@
 class Solution {
 public:
     int minEatingSpeed(vector<int>& piles, int h) {
-        int left = 1, right = *max_element(piles.begin(), piles.end());
-        while (left < right) {
-            int mid = left + (right - left) / 2;
+        int minSpeed = 1, maxSpeed = *max_element(piles.begin(), piles.end());
+        while (minSpeed < maxSpeed) {
+            int currentSpeed = minSpeed + (maxSpeed - minSpeed) / 2;
+            // reset hours
             long long hours = 0;
+
             for (int bananas : piles) {
-                hours += (bananas + mid - 1) / mid; // Avoids floating-point issues
+                hours += ceil((double)bananas / currentSpeed); // Cast to floating point
             }
-            if (hours <= h) {
-                right = mid; // Try a smaller k
+            // Hours value recieved after loop completion
+
+            if (hours <= h) { // agar aur km time me krna hai
+                maxSpeed = currentSpeed; // Try a smaller k
             } else {
-                left = mid + 1; // Increase k
+                minSpeed = currentSpeed + 1; // Increase k
             }
         }
-        return left;
+        return minSpeed;
     }
 };
